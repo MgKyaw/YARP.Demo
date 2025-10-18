@@ -4,9 +4,12 @@ using Microsoft.Extensions.DependencyInjection;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add the reverse proxy capability to the server
+// builder.Services.AddReverseProxy()
+//     // Initialize the reverse proxy from the "ReverseProxy" section of configuration
+//     .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
 builder.Services.AddReverseProxy()
-    // Initialize the reverse proxy from the "ReverseProxy" section of configuration
-    .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy"));
+    .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy1"))
+    .LoadFromConfig(builder.Configuration.GetSection("ReverseProxy2"));
 
 var app = builder.Build();
 
